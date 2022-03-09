@@ -10,6 +10,7 @@ uniform int EndPortalLayers;
 
 in vec4 texProj0;
 
+const vec3 BACKGROUND_COLOR = vec3(0.022087, 0.098399, 0.110818);
 const vec3 LAYER1 = vec3(0.080955, 0.314821, 0.661491);
 const vec3 LAYER2 = vec3(0.204675, 0.390010, 0.302066);
 const vec3 LAYER3 = vec3(0.047281, 0.315338, 0.321970);
@@ -62,7 +63,7 @@ mat4 end_portal_layer(float layer) {
 out vec4 fragColor;
 
 void main() {
-    vec3 color = textureProj(Sampler0, texProj0).rgb * COLORS[0];
+    vec3 color = BACKGROUND_COLOR;
     for (int i = 0; i < EndPortalLayers; i++) {
         color += textureProj(Sampler1, texProj0 * end_portal_layer(float(i + 1))).rgb * COLORS[i];
     }
